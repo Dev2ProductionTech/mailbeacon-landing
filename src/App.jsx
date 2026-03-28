@@ -7,6 +7,7 @@ import Features from './components/Features.jsx'
 import WhyMailBeacon from './components/WhyMailBeacon.jsx'
 import Stats from './components/Stats.jsx'
 import Pricing from './components/Pricing.jsx'
+import Testimonials from './components/Testimonials.jsx'
 import FAQ from './components/FAQ.jsx'
 import ContactForm from './components/ContactForm.jsx'
 import Footer from './components/Footer.jsx'
@@ -32,6 +33,7 @@ export default function App() {
         <WhyMailBeacon />
         <Stats />
         <Pricing />
+        <Testimonials />
         <FAQ />
         <ContactForm />
       </main>

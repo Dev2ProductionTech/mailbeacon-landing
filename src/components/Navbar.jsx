@@ -14,6 +14,7 @@ export default function Navbar() {
     { label: 'How It Works', href: '#how-it-works' },
     { label: 'Features', href: '#features' },
     { label: 'Pricing', href: '#pricing' },
+    { label: 'Reviews', href: '#testimonials' },
     { label: 'FAQ', href: '#faq' },
   ]
 
@@ -39,7 +40,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className="nav-cta">
-          <span className="nav-badge">✦ By Dev2Production</span>
+          <span className="nav-badge">✶ By Dev2Production</span>
           <a href="#contact" className="btn btn-primary btn-sm">Get Started</a>
         </div>
 
