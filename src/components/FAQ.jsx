@@ -6,8 +6,8 @@ const FAQS = [
     a: 'No. The pixel is a standard 1×1 transparent image tag — identical to what marketing newsletters, Gmail itself, and virtually every professional email platform uses. It has zero impact on spam scoring. MailBeacon also uses anti-spam-optimised attribute formatting (width, height, border, alt attributes all set correctly).',
   },
   {
-    q: 'How does the tracking pixel actually work?',
-    a: "When you send an email with the pixel in your signature, the recipient's email client loads the image from your private server. That load event is recorded with their IP address, device type, and timestamp. Because it's in your signature, it's included automatically in every email — no manual insertion needed.",
+    q: "How does the tracking pixel actually work?",
+    a: 'When you send an email with the pixel in your signature, the recipient\'s email client loads the image from your private server. That load event is recorded with their IP address, device type, and timestamp. Because it\'s in your signature, it\'s included automatically in every email — no manual insertion needed.',
   },
   {
     q: 'What email clients are supported?',
@@ -15,7 +15,7 @@ const FAQS = [
   },
   {
     q: "What's the difference between 'Confirmed' and 'Preview' opens?",
-    a: "Gmail and Apple Mail use privacy proxies that pre-load images before the user ever opens the email. These show up as 'Preview' opens in MailBeacon. When a real human on a real device loads the pixel, it's classified as 'Confirmed'. This prevents you from thinking your email was read when it was only scanned by a proxy.",
+    a: 'Gmail and Apple Mail use privacy proxies that pre-load images before the user ever opens the email. These show up as "Preview" opens in MailBeacon. When a real human on a real device loads the pixel, it\'s classified as "Confirmed". This prevents you from thinking your email was read when it was only scanned by a proxy.',
   },
   {
     q: 'Is my email tracking data private?',
@@ -27,7 +27,7 @@ const FAQS = [
   },
   {
     q: 'Can I track multiple recipients separately?',
-    a: "Yes. MailBeacon supports per-recipient tagging via the `?to=name` URL parameter. Add `?to=john` or `?to=clientname` to your pixel URL for different campaigns or contacts, and each will appear labelled in your dashboard.",
+    a: 'Yes. MailBeacon supports per-recipient tagging via the `?to=name` URL parameter. Add `?to=john` or `?to=clientname` to your pixel URL for different campaigns or contacts, and each will appear labelled in your dashboard.',
   },
 ]
 
@@ -47,7 +47,7 @@ export default function FAQ() {
 
         <div className="faq-list">
           {FAQS.map((f, i) => (
-            <div key={i} className={`faq-item reveal reveal-delay-${(i % 3) + 1}${open === i ? ' open' : ''}`}>
+            <div key={i} className={`faq-item${open === i ? ' open' : ''}`}>
               <button className="faq-q" onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}>
                 {f.q}
                 <svg className="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
