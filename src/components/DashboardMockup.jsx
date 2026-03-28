@@ -1,11 +1,37 @@
-const ROWS = [
-  { email: 'client@acme.co',     time: 'just now',   type: 'confirmed', device: 'iPhone 15',   ip: '104.28.x.x',  isNew: true },
-  { email: 'ceo@techcorp.io',    time: '2 min ago',  type: 'confirmed', device: 'MacBook Pro', ip: '91.192.x.x',  isNew: false },
-  { email: 'hr@globalinc.com',   time: '8 min ago',  type: 'preview',   device: 'Outlook',     ip: '40.97.x.x',   isNew: false },
-  { email: 'ali@dev2prod.com',   time: '14 min ago', type: 'confirmed', device: 'Android 14',  ip: '185.60.x.x',  isNew: false },
+import { useState, useEffect } from 'react'
+
+const BASE_ROWS = [
+  { email: 'ceo@techcorp.io',    time: '2 min ago',  type: 'confirmed', device: 'MacBook Pro', isNew: false },
+  { email: 'hr@globalinc.com',   time: '8 min ago',  type: 'preview',   device: 'Outlook',     isNew: false },
+  { email: 'ali@dev2prod.com',   time: '14 min ago', type: 'confirmed', device: 'Android 14',  isNew: false },
+]
+
+const LIVE_ENTRIES = [
+  { email: 'prospect@startup.co', device: 'iPhone 15 Pro' },
+  { email: 'cto@bigcorp.com',     device: 'MacBook Air' },
+  { email: 'vp@enterprise.io',    device: 'Chrome / Win' },
+  { email: 'client@acme.co',      device: 'iPhone 15' },
 ]
 
 export default function DashboardMockup() {
+  const [liveIdx, setLiveIdx] = useState(0)
+  const [flash, setFlash] = useState(false)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setFlash(true)
+      setTimeout(() => setFlash(false), 700)
+      setLiveIdx(i => (i + 1) % LIVE_ENTRIES.length)
+    }, 3800)
+    return () => clearInterval(id)
+  }, [])
+
+  const live = LIVE_ENTRIES[liveIdx]
+  const rows = [
+    { email: live.email, time: 'just now', type: 'confirmed', device: live.device, isNew: true },
+    ...BASE_ROWS,
+  ]
+
   return (
     <div style={{ position: 'relative' }}>
       <div className="dash-frame">
@@ -50,8 +76,8 @@ export default function DashboardMockup() {
               <span className="dash-th">Type</span>
               <span className="dash-th">Time</span>
             </div>
-            {ROWS.map((r, i) => (
-              <div key={i} className={`dash-row${r.isNew ? ' dash-row-new' : ''}`} style={{ animationDelay: `${i * 0.15}s` }}>
+            {rows.map((r, i) => (
+              <div key={i} className={`dash-row${r.isNew ? ' dash-row-new' : ''}${r.isNew && flash ? ' dash-row-flash' : ''}`} style={{ animationDelay: `${i * 0.15}s` }}>
                 <span style={{ fontSize: 11, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {r.isNew && '● '}{r.email}
                 </span>
@@ -72,7 +98,7 @@ export default function DashboardMockup() {
       {/* Floating notification card */}
       <div className="dash-floating-card">
         <div className="fc-label">📬 New open detected</div>
-        <div className="fc-email">client@acme.co</div>
+        <div className="fc-email">{live.email}</div>
         <div className="fc-row">
           <div className="fc-stat">
             <div className="fc-stat-v" style={{ color: 'var(--green)' }}>✓</div>
