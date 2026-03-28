@@ -70,6 +70,7 @@ export default function Footer() {
                 {LEGAL_LINKS.map(l => (
                   <li key={l.type}>
                     <button
+                      type="button"
                       className="footer-legal-btn"
                       onClick={() => setLegal(l.type)}
                     >
